@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Projeto de Formulário de Pagamento
 
-## Getting Started
+Este projeto é uma [réplica](https://www.figma.com/design/hv1LgD7oNrtlmfWgKBG6PF/Woovi-Desafio-Front?node-id=1-100&t=8e8S8BqGhbskgN2d-0) web desenvolvida utilizando React, Next.js e Material-UI. A aplicação consiste em formulários para pagamento com Pix e cartão de crédito, além de uma navegação entre diferentes telas por meio de URLs.
 
-First, run the development server:
+## Estrutura do Projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Componente Header**: Responsável por exibir o cabeçalho da página com um logotipo e uma mensagem personalizada.
+- **Componente DataCard**: Contém o formulário de dados do cartão de crédito, incluindo campos para nome completo, CPF, número do cartão, vencimento, CVV e número de parcelas.
+- **Componente Footer**: Exibe um rodapé fixo com um ícone de segurança e o logotipo da Woovi.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Navegação
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+A navegação entre as diferentes telas da aplicação é realizada diretamente através das URLs:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Página Inicial**: [http://localhost:3001/](http://localhost:3001/)
+  - Página principal da aplicação.
+- **Página Pix Credit Card**: [http://localhost:3001/pix-credit-card](http://localhost:3001/pix-credit-card)
+  - Página contendo um formulário para pagamento via Pix.
+- **Página Pix Credit Card 2**: [http://localhost:3001/pix-credit-card2](http://localhost:3001/pix-credit-card2)
+  - Página contendo um formulário para pagamento da entrada via cartão de crédito.
 
-## Learn More
+## Instalação e Execução
 
-To learn more about Next.js, take a look at the following resources:
+Para executar este projeto localmente, siga os passos abaixo:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/leandrucarvalho/desafio-woovi-frontend
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. Instale as dependências:
+   ```bash
+   cd desafio-woovi-frontend
+   npm install
+   ```
 
-## Deploy on Vercel
+3. Inicie o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Acesse a aplicação no navegador através de [http://localhost:3001](http://localhost:3001).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Tecnologias Utilizadas
+
+- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **Next.js**: Framework React para renderização do lado do servidor e geração de sites estáticos.
+- **Material-UI**: Biblioteca de componentes de interface de usuário para React.
+- **TailwindCSS**: Framework CSS para estilização rápida e responsiva.
+
+## Contato
+
+Para mais informações, dúvidas ou sugestões, entre em contato pelo e-mail: [leandrucs@gmail.com](mailto:leandrucs@gmail.com).
+
