@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 
 interface Props {
   text: string;
+  onClick: () => void;
 }
 
 const BootstrapButton = styled(Button)({
@@ -24,9 +25,9 @@ const BootstrapButton = styled(Button)({
   marginBottom: 20,
 });
 
-export default function CustomizedButtons({ text }: Props) {
+export default function CustomizedButtons({ text, onClick }: Props) {
   return (
-    <BootstrapButton variant="contained" disableRipple>
+    <BootstrapButton onClick={onClick} variant="contained" disableRipple>
       {text}
     </BootstrapButton>
   );

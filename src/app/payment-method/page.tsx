@@ -1,11 +1,15 @@
 "use client";
-import Checkbox from "@mui/material/Checkbox";
+
 import React, { useState } from "react";
+import Checkbox from "@mui/material/Checkbox";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import IconButton from "@mui/material/IconButton";
-import ArrowCircleRightOutlinedIcon from "@mui/icons-material/ArrowCircleRightOutlined";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
 import CustomAlert from "../_components/customAlert";
+import { useRouter } from "next/navigation";
+import CustomizedButtons from "../_components/customButton";
 
 interface Installment {
   quantity: number;
@@ -41,9 +45,19 @@ const PaymentMethod = () => {
   const [selectedOption, setSelectedOption] = useState<Installment | null>(
     null
   );
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   const handleSelect = (installment: Installment) => {
     setSelectedOption(installment);
+    setOpen(true);
+  };
+
+  const handleClose = (agree: boolean) => {
+    setOpen(false);
+    if (agree) {
+      router.push("/pix-credit-card");
+    }
   };
 
   const formatCurrency = (amount: number) =>
@@ -124,18 +138,26 @@ const PaymentMethod = () => {
           </div>
         </div>
       ))}
-      {selectedOption && (
-        <div className="absolute right-9">
-          <IconButton
-            aria-label="arrow rigth"
-            sx={{
-              color: "var(--primary)",
-            }}
-          >
-            <ArrowCircleRightOutlinedIcon />
-          </IconButton>
-        </div>
-      )}
+      <Dialog
+        open={open}
+        onClose={() => handleClose(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Deseja continuar?"}</DialogTitle>
+
+        <DialogActions>
+          <CustomizedButtons
+            onClick={() => handleClose(false)}
+            text={"Cancelar"}
+          />
+
+          <CustomizedButtons
+            text={"Continuar"}
+            onClick={() => handleClose(true)}
+          />
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

@@ -4,11 +4,44 @@ import { Box } from "@mui/material";
 import Header from "../_components/header";
 import Image from "next/image";
 import { FaCopy } from "react-icons/fa";
-import React from "react";
+import React, { useState } from "react";
 import PaymentDetails from "../_components/paymentDetails";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { useRouter } from "next/navigation";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogTitle from "@mui/material/DialogTitle";
+import CustomizedButtons from "../_components/customButton";
+import Snackbar from "@mui/material/Snackbar";
 
 const PixCreditCard = () => {
+  const [openDialog, setOpenDialog] = useState(false);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const router = useRouter();
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = (agree: boolean) => {
+    setOpenDialog(false);
+    if (agree) {
+      router.push("/pix-credit-card2");
+    }
+  };
+
+  const handleOpenSnackbar = () => {
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
+  };
+
+  const handleCopyClick = () => {
+    handleOpenDialog();
+    handleOpenSnackbar();
+  };
   return (
     <div className="flex items-center flex-col p-6 mb-5">
       <Header text={"João, pague a entrada de R$ 15.300,00 pelo Pix"} />
@@ -20,7 +53,10 @@ const PixCreditCard = () => {
         <Image width={332} height={332} src={"/qrcode.png"} alt={"qrcode"} />
       </Box>
       <div className="flex items-center flex-col text-center">
-        <p className="bg-info px-5 py-1 rounded-lg text-base100 text-lg flex items-center gap-2 mb-5">
+        <p
+          onClick={() => handleCopyClick()}
+          className="bg-info px-5 py-1 rounded-lg text-base100 text-lg flex items-center gap-2 mb-5"
+        >
           Clique para copiar QR CODE <FaCopy />
         </p>
         <PaymentDetails
@@ -34,6 +70,34 @@ const PixCreditCard = () => {
           }
         />
       </div>
+      <Dialog
+        open={openDialog}
+        onClose={() => handleCloseDialog(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Deseja continuar para etapa 2?"}
+        </DialogTitle>
+
+        <DialogActions>
+          <CustomizedButtons
+            onClick={() => handleCloseDialog(false)}
+            text={"Cancelar"}
+          />
+
+          <CustomizedButtons
+            text={"Continuar"}
+            onClick={() => handleCloseDialog(true)}
+          />
+        </DialogActions>
+      </Dialog>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+        message="QR CODE Copiado com sucesso"
+      />
     </div>
   );
 };
