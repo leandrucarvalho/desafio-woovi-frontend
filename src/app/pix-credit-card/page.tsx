@@ -77,7 +77,7 @@ const PixCreditCard = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {"Deseja continuar para etapa 2?"}
+          {"Deseja continuar para etapa final?"}
         </DialogTitle>
 
         <DialogActions>

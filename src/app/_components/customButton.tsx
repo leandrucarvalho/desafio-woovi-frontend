@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 
 interface Props {
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const BootstrapButton = styled(Button)({
