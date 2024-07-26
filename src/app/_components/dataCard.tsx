@@ -5,6 +5,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import CustomizedButtons from "./customButton";
+import MaskedTextField from "./masked-input-styled";
 
 import React from "react";
 
@@ -28,10 +29,10 @@ const DataCard = () => {
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
           {
             borderColor: "var(--primary)",
-            color: "var(--secondary)",
           },
         "& .MuiInputBase-input": { color: "var(--secondary)" },
         "& .MuiInputLabel-root": { color: "var(--secondary)" },
+        "& .MuiInputLabel-root.Mui-focused": { color: "var(--primary)" },
         "& .MuiOutlinedInput-notchedOutline": {
           border: "2px solid",
           borderColor: "var(--base-200)",
@@ -48,36 +49,37 @@ const DataCard = () => {
             shrink: true,
           }}
         />
-        <TextField
+        <MaskedTextField
           fullWidth
           id="outlined-cpf-input"
           label="CPF"
-          type="text"
+          mask="000.000.000-00"
           InputLabelProps={{
             shrink: true,
           }}
         />
-        <TextField
+        <MaskedTextField
           fullWidth
           id="outlined-number"
           label="Número do cartão"
-          type="text"
+          mask="0000 0000 0000 0000"
           InputLabelProps={{
             shrink: true,
           }}
         />
         <div className="flex gap-4">
-          <TextField
+          <MaskedTextField
             id="outlined-search"
             label="Vencimento"
-            type="text"
+            mask="00/0000"
             InputLabelProps={{
               shrink: true,
             }}
           />
-          <TextField
+          <MaskedTextField
             id="outlined-helperText"
             label="CVV"
+            mask="000"
             type="number"
             InputLabelProps={{
               shrink: true,
